@@ -9,7 +9,7 @@ print(
 )
 
 
-with open("./example/colors.lua", "r") as f:
+with open("./example/colors.lua", "r", encoding="utf-8") as f:
     lua_code = f.read()
 
 lua_palette = lua.execute(lua_code)["palette"]  # pyright: ignore
@@ -30,13 +30,13 @@ def get_text_color(hex_color):
 
 names = list(palette.keys())
 colors = list(palette.values())
-n = len(names)
+COLORS_NUM = len(names)
 
 # Grid settings
-n_cols = 8  # max columm
+COLS_NUM = 8  # max columm
 SPACING = 0.05  # space between a cells
 CELL_SIZE = 2.0
-n_rows = (n + n_cols - 1) // n_cols
+ROWS_NUM = (COLORS_NUM + COLS_NUM - 1) // COLS_NUM
 
 
 # Cell style
@@ -46,14 +46,14 @@ RECT_WIDTH = CELL_SIZE - SPACING
 HEX_FONTSIZE = 20
 NAME_FONTSIZE = 30
 
-fig, ax = plt.subplots(figsize=(n, 4 * n_rows * (CELL_SIZE + SPACING)))
+fig, ax = plt.subplots(figsize=(COLORS_NUM, 4 * ROWS_NUM * (CELL_SIZE + SPACING)))
 ax.set_aspect("equal")
 ax.axis("off")
 
-for i in range(n):
-    row = i // n_cols
-    col = i % n_cols
-    y_pos = (n_rows - 1 - row) * (CELL_SIZE + SPACING)
+for i in range(COLORS_NUM):
+    row = i // COLS_NUM
+    col = i % COLS_NUM
+    y_pos = (ROWS_NUM - 1 - row) * (CELL_SIZE + SPACING)
     x_pos = col * (CELL_SIZE + SPACING)
 
     rect = FancyBboxPatch(
@@ -95,8 +95,8 @@ for i in range(n):
         fontfamily="monospace",
     )
 
-ax.set_xlim(0, n_cols * (CELL_SIZE + SPACING) - SPACING)
-ax.set_ylim(0, n_rows * (CELL_SIZE + SPACING) - SPACING)
+ax.set_xlim(0, COLS_NUM * (CELL_SIZE + SPACING) - SPACING)
+ax.set_ylim(0, ROWS_NUM * (CELL_SIZE + SPACING) - SPACING)
 
 plt.savefig("color_palette.png", dpi=300, bbox_inches="tight", pad_inches=0.1)
 # plt.show()
