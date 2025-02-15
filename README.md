@@ -20,7 +20,7 @@ pip install -r requirements.txt
 Run script(befor copy colors.lua to the root)
 
 ```bash
-./plot-palette.py
+./plot_palette.py
 ```
 
 ## colors.lua format
