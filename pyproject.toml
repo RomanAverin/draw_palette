@@ -1,0 +1,22 @@
+[project]
+name = "plotpalette"
+version = "1.0.0"
+authors = [{ name = "Roman Averin", email = "mail@romanaverin.com" }]
+description = "Simple package for rendering image plate a color scheme palette of neovim or anything else"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Utilities",
+  "Topic :: Multimedia :: Graphics",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+Homepage = "https://github.com/romanaverin/plot-palette"
+Issues = "https://github.com/romanaverin/plot-palette/issues"
