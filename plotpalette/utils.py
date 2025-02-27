@@ -18,18 +18,18 @@ def get_text_color(hex_color):
     return "white" if brightness < 128 else "black"
 
 
-def import_palette(file: str) -> dict:
+def import_palette(file: str) -> list:
     # Initialize the Lua runtime
     lua = lupa.LuaRuntime()
-    print(
-        f"Using {lupa.LuaRuntime().lua_implementation} (compiled with {lupa.LUA_VERSION})"
-    )
+    # print(
+    #     f"Using {lupa.LuaRuntime().lua_implementation} (compiled with {lupa.LUA_VERSION})"
+    # )
 
     with open(file, "r", encoding="utf-8") as f:
         lua_code = f.read()
-    palette = {}
+    palette = []
     lua_palette = lua.execute(lua_code)["palette"]  # pyright: ignore
     for color in lua_palette.items():
-        palette.update({color[0]: color[1]})
+        palette.append((color[0], color[1]))
 
     return palette

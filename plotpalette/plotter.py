@@ -15,7 +15,7 @@ class PlotterPalette:
 
     """
 
-    def __init__(self, colors: dict[str, str], config=None):
+    def __init__(self, colors: list, config=None):
         self.config = {**DEFAULT_CONFIG, **(config or {})}
         self.palette = colors
         self.colors_num = len(colors)
@@ -38,15 +38,15 @@ class PlotterPalette:
         self.ax.axis("off")
 
     def render(self):
-        names = list(self.palette.keys())
-        colors = list(self.palette.values())
-
         RECT_WIDTH = self.config["cell_size"] - 2 * self.config["spacing"]
         RECT_SIZE = RECT_WIDTH - self.config["spacing"]
+        print(self.palette)
+        for index, color in enumerate(self.palette):
+            color_name = color[0]
+            color_hex_value = color[1]
 
-        for i in range(self.colors_num):
-            row = i // self.config["max_column_num"]
-            col = i % self.config["max_column_num"]
+            row = index // self.config["max_column_num"]
+            col = index % self.config["max_column_num"]
             y_pos = (self.rows_num - 1 - row) * (
                 self.config["cell_size"] + self.config["spacing"]
             )
@@ -57,7 +57,7 @@ class PlotterPalette:
                 RECT_SIZE,
                 RECT_SIZE,
                 boxstyle=f"round,pad={self.config['spacing']},rounding_size={self.config['rounding']}",
-                facecolor=colors[i],
+                facecolor=color_name,
                 edgecolor="none",
             )
             self.ax.add_patch(rect)
@@ -66,10 +66,10 @@ class PlotterPalette:
             self.ax.text(
                 x_pos + self.config["cell_size"] / 2,
                 y_pos + self.config["cell_size"] / 2,
-                names[i],
+                color_name,
                 ha="center",
                 va="center",
-                color=get_text_color(colors[i]),
+                color=get_text_color(color_hex_value),
                 fontsize=self.config["color_name_size"],
                 wrap=True,
                 fontfamily=self.config["fontfamily"],
@@ -79,10 +79,10 @@ class PlotterPalette:
             self.ax.text(
                 x_pos + self.config["cell_size"] - 0.2,
                 y_pos + 0.1,
-                colors[i].upper(),
+                color_hex_value.upper(),
                 ha="right",
                 va="bottom",
-                color=get_text_color(colors[i]),
+                color=get_text_color(color_hex_value),
                 fontsize=self.config["color_hex_size"],
                 alpha=0.8,
                 fontfamily=self.config["fontfamily"],
