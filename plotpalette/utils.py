@@ -29,6 +29,7 @@ def import_palette(file: str) -> list:
         lua_code = f.read()
     palette = []
     lua_palette = lua.execute(lua_code)["palette"]  # pyright: ignore
+
     for color in lua_palette.items():
         palette.append((color[0], color[1]))
 

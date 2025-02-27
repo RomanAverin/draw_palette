@@ -40,10 +40,10 @@ class PlotterPalette:
     def render(self):
         RECT_WIDTH = self.config["cell_size"] - 2 * self.config["spacing"]
         RECT_SIZE = RECT_WIDTH - self.config["spacing"]
-        print(self.palette)
-        for index, color in enumerate(self.palette):
-            color_name = color[0]
-            color_hex_value = color[1]
+
+        for index, color_pair in enumerate(self.palette):
+            color_name = color_pair[0]
+            color_hex_value = color_pair[1]
 
             row = index // self.config["max_column_num"]
             col = index % self.config["max_column_num"]
@@ -57,7 +57,7 @@ class PlotterPalette:
                 RECT_SIZE,
                 RECT_SIZE,
                 boxstyle=f"round,pad={self.config['spacing']},rounding_size={self.config['rounding']}",
-                facecolor=color_name,
+                facecolor=color_hex_value,
                 edgecolor="none",
             )
             self.ax.add_patch(rect)
