@@ -58,4 +58,4 @@ M.palette = {
   brightWhite = "#6d757d",
 }
 
-return M
+return M.palette

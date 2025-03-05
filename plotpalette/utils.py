@@ -1,3 +1,7 @@
+"""
+Utils module
+"""
+
 import lupa
 
 
@@ -19,18 +23,18 @@ def get_text_color(hex_color):
 
 
 def import_palette(file: str) -> list:
-    # Initialize the Lua runtime
+    """
+    Import palette from lua file
+        Input parameters:
+                - file(str) path to a Lua file with a palette table
+    """
     lua = lupa.LuaRuntime()
-    # print(
-    #     f"Using {lupa.LuaRuntime().lua_implementation} (compiled with {lupa.LUA_VERSION})"
-    # )
 
     with open(file, "r", encoding="utf-8") as f:
         lua_code = f.read()
     palette = []
-    lua_palette = lua.execute(lua_code)["palette"]  # pyright: ignore
-
-    for color in lua_palette.items():
+    lua_palette = lua.execute(lua_code)  # pyright: ignore
+    for color in lua_palette.items():  # pyright: ignore
         palette.append((color[0], color[1]))
 
     return palette

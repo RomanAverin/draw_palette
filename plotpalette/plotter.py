@@ -1,3 +1,8 @@
+"""
+Main lib class PlotterPalette
+
+"""
+
 from matplotlib.patches import FancyBboxPatch
 from matplotlib.figure import Figure
 from .config import DEFAULT_CONFIG
@@ -38,8 +43,12 @@ class PlotterPalette:
         self.ax.axis("off")
 
     def render(self):
-        RECT_WIDTH = self.config["cell_size"] - 2 * self.config["spacing"]
-        RECT_SIZE = RECT_WIDTH - self.config["spacing"]
+        """
+        Rendering palette
+
+        """
+        rect_width = self.config["cell_size"] - 2 * self.config["spacing"]
+        rect_size = rect_width - self.config["spacing"]
 
         for index, color_pair in enumerate(self.palette):
             color_name = color_pair[0]
@@ -54,8 +63,8 @@ class PlotterPalette:
 
             rect = FancyBboxPatch(
                 (x_pos + self.config["spacing"], y_pos + self.config["spacing"]),
-                RECT_SIZE,
-                RECT_SIZE,
+                rect_size,
+                rect_size,
                 boxstyle=f"round,pad={self.config['spacing']},rounding_size={self.config['rounding']}",
                 facecolor=color_hex_value,
                 edgecolor="none",
@@ -99,6 +108,14 @@ class PlotterPalette:
         )
 
     def save_image(self, image_name="colors_palette.png"):
+        """
+        Save image to the disk
+
+            Input parameters:
+                - image_name(str) image path and name, default 'colors_palette.png'
+                  example: './pallet.png'
+        """
+
         self.figure.savefig(
             image_name,
             transparent=True,

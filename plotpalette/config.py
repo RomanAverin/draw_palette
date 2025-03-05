@@ -1,3 +1,7 @@
+"""
+Default settings
+"""
+
 DEFAULT_CONFIG = {
     "spacing": 0.05,
     "dpi": 300,  # dpi of output image
