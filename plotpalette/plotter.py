@@ -1,6 +1,5 @@
 """
-Main lib class PlotterPalette
-
+Module contain rendering a palette class
 """
 
 from matplotlib.patches import FancyBboxPatch
