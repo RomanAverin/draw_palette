@@ -1,5 +1,5 @@
 """
-Module contain rendering a palette class
+Module containing the rendering of a palette class
 """
 
 from matplotlib.patches import FancyBboxPatch
@@ -8,7 +8,7 @@ from .config import DEFAULT_CONFIG
 from .utils import get_text_color
 
 
-class PlotterPalette:
+class DrawPalette:
     """
     A class for rendering a palette of colors specified as a dictionary.
     Input parameters:

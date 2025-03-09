@@ -2,11 +2,11 @@ import sys
 
 sys.path.append("..")
 
-from plotpalette import utils, PlotterPalette  # pylint: disable=import-error
+from draw_palette import utils, DrawPalette  # pylint: disable=import-error
 
 colors = utils.import_palette("./colors.lua")
 colors.sort(key=lambda x: x[0])
 
-plotter = PlotterPalette(colors)
-plotter.render()
-plotter.save_image()
+palette = DrawPalette(colors)
+palette.render()
+palette.save_image(image_name="palette.png")
