@@ -1,13 +1,14 @@
 .ONESHELL:
+VENV           = .venv
 
 init: clean
-	python -m venv .venv 
-	source .venv/bin/activate
+	python -m venv $(VENV) 
+	source $(VENV)/bin/activate
 	pip install --upgrade pip
 	pip install -r requirements.txt
 
 clean: 
-	rm -rf .venv
+	rm -rf $(VENV)
 	find -iname "*.pyc" -delete
 
 .PHONY: init
