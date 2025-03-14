@@ -8,7 +8,10 @@ init: clean
 	pip install -r requirements.txt
 
 clean: 
-	rm -rf $(VENV)
+	rm -rf $(VENV) dist
 	find -iname "*.pyc" -delete
 
-.PHONY: init
+build:
+	uv build
+
+.PHONY: build

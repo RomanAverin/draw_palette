@@ -1,10 +1,10 @@
 [project]
-name = "plotpalette"
-version = "1.0.0"
+name = "draw_palette"
+version = "0.1.0"
 authors = [{ name = "Roman Averin", email = "mail@romanaverin.com" }]
 description = "Simple package for rendering image plate a color scheme palette of neovim or anything else"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 classifiers = [
   "Programming Language :: Python :: 3",
   "Topic :: Utilities",
@@ -12,11 +12,18 @@ classifiers = [
 ]
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
+dependencies = ["matplotlib==3.10.1", "lupa==2.4"]
 
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = ["pylint>=3.3.5", "uv>=0.6.6"]
+
+[tool.uv.workspace]
+members = ["example-pkg"]
 
 [project.urls]
-Homepage = "https://github.com/romanaverin/plot-palette"
-Issues = "https://github.com/romanaverin/plot-palette/issues"
+Homepage = "https://github.com/romanaverin/draw_palette"
+Issues = "https://github.com/romanaverin/draw_palette/issues"
