@@ -29,7 +29,7 @@ colors = utils.import_palette("./colors.lua")
 colors.sort(key=lambda x: x[0])
 
 # Create palette object
-palette = DrawPalette(colors)
+palette = DrawPalette(colors) # arg is a list of tuple
 # Render it
 palette.render()
 # Save to the file
@@ -39,7 +39,6 @@ palette.save_image(image_name='palette.png')
 ### `colors.lua`
 
 To render a palette, a color table must be fed to the input.
-
 Example of lua file with scheme:
 
 ```lua

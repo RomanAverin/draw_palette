@@ -27,6 +27,9 @@ def import_palette(file: str) -> list:
     Import palette from lua file
         Input parameters:
                 - file(str) path to a Lua file with a palette table
+
+        Returns:
+                - list of a tuples (str, str)
     """
     lua = lupa.LuaRuntime()
 
