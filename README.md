@@ -6,9 +6,11 @@ The format of pictures for saving is the same as matplotlib
 > The library is under deep development.
 > But it will be very useful to get feedback.
 
-![Sample palette](./color_palette.png)
+![palette](https://github.com/user-attachments/assets/576a0993-7a64-4e05-82eb-4c5a6101ca96)
+
 
 ## Usage
+
 
 Install package
 
