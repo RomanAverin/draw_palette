@@ -11,7 +11,10 @@ clean:
 	rm -rf $(VENV) dist
 	find -iname "*.pyc" -delete
 
-build:
+build: init
 	uv build
+
+publish: build
+	uv publish
 
 .PHONY: build
