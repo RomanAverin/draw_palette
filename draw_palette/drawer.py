@@ -2,10 +2,40 @@
 Module containing the rendering of a palette class
 """
 
+from functools import reduce
 from matplotlib.patches import FancyBboxPatch
-from matplotlib.figure import Figure
+from matplotlib.figure import Figure as MatplotFigure
 from .config import DEFAULT_CONFIG
 from .utils import get_text_color
+from draw_palette import config
+
+
+class Figure:
+    def __init__(self) -> None:
+        pass
+
+    def config(self, user_config: dict) -> dict:
+        default_config = {
+            "spacing": 0.05,  # spacing between cells
+            "dpi": 300,  # dpi of output image
+            "rounding": 0.05,  # rounding of cell
+            "max_column_num": 6,  # max colomns
+            "cell_size": 3.0,  # size of color cell
+            "fontfamily": "monospace",  # font family for any text
+            "color_name_size": 35,  # font size of label color name
+            "color_hex_size": 25,  # font size of label color HEX value
+        }
+        actial_config = default_config | user_config
+        return actial_config
+
+
+class GridFigure(Figure):
+    def __init__(self) -> None:
+        super().__init__()
+
+
+class StripesFigure(Figure):
+    pass
 
 
 class DrawPalette:
@@ -31,7 +61,7 @@ class DrawPalette:
             self.colors_num + self.config["max_column_num"] - 1
         ) // self.config["max_column_num"]
 
-        self.figure = Figure(
+        self.figure = MatplotFigure(
             figsize=(
                 self.colors_num,
                 4 * self.rows_num * (self.config["cell_size"] + self.config["spacing"]),
